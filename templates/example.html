@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <title>Example Report</title>
+  </head>
+  <body>
+    {% for finding in findings['results'] %}
+      <p>{{ finding['name'] }}
+    {% endfor %}
+  </body>
+</html>
