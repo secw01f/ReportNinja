@@ -1,0 +1,20 @@
+{
+  "elements": [
+    {
+      "id": "<<html_element_id>>",
+      "type": "a",
+      "link": "https://example.com",
+      "text": "sometext"
+    },
+    {
+      "id": "<<html_element_id>>",
+      "type": "p",
+      "text": "some more text in a scentence"
+    },
+    {
+      "id": "<<html_element_id>>",
+      "type": "td",
+      "text": "Some Text"
+    }
+  ]
+}
