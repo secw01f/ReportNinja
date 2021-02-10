@@ -16,5 +16,8 @@
       "type": "td",
       "text": "Some Text"
     }
-  ]
+  ],
+  "pdf": {
+    "quiet": ""
+  }
 }
