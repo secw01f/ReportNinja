@@ -39,8 +39,20 @@ ReportNinja utilizes the Jinja2 templating framework in order generate the HTML 
 
 ReportNinja provides the raw json provided by the DefectDojo API to be used in the template so that multiple datapoints can be used for custom reports. For details as to what information is available for each variable provided to Jinja2, please reference the DefectDojo API documentation for the coresponding URL that is provided in the table below.
 
-| Jinja2 Variable |       API URL     | Template Example |
+| Jinja2 Variable |    API URL/Path   | Template Example |
 | :-------------: | :---------------: | :--------------- |
 |    engagement   | https://exampledojo.com/api/v2/engagements/{id}/ | <p>{{ engagement['name'] }}</p> |
 |     product     | https://exampledojo.com/api/v2/products/{id}/ | <p>{{ product['name'] }}</p> |
 |   product_type  | https://exampledojo.com/api/v2/product_types/?id={id} | <p>{{  product_type }}</p> |
+|      test       | https://exampledojo.com/api/v2/tests/{id}/ | <p>{{ test['title'] }}</p> |
+|    findings     | https://exampledojo.com/api/v2/findings/?test={id} | {% for finding in findings['results'] %}<p>{{ finding['name'] }}</p>{% endfor %} |
+|    endpoints    | N/A | {% for finding in findings['results'] %}{% for endpoint in finding['endpoints'] %}<p>{{ endpoints[endpoint\|string] }}</p>{% endfor %}{% endfor %} |
+|      jira       | N/A | {% set count = namespace(value=0) %}{% for finding in findings['results'] %}{% set count.value = count.value + 1 %}<p>{{ jira[count.value - 1] }}{% endfor %}{% endfor %} |
+
+Finding images stored in DefectDojo can be integrated into reports without having to manage files by using the ```src="data:image/png;base64,"``` attribute in your HTML "img" tag and using a Jinja2 reference in the template to the base64 encoded image(s) in the finding output. It should be noted that becuase the images are hard coded into the generated HTML document, the image can sometimes be broken up between two pages by PDFkit when generating the PDF. Some adjustments may need to be made in the template design to account for this.
+
+If you would like to utilize javascript for any part of your template. The javascript must be coded into the HTML file itself so that the output of the code is maintained if the HTML file is converted to a PDF.
+
+# Template Configuration Files
+
+There are times when data that does not come out of DefectDojo needs to go into a report. For this situation, the use of a Template Configuration File can add this data to your generated report. The template for a Template Configuration File is listed in this repo. There are three HTML elements that are supported by the Template Configuration File and directions for PDFkit can be passed to ReportNinja.
