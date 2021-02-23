@@ -10,7 +10,7 @@ __   _ _____ __   _ _____ _______
 
 ReportNinja is a tool for creating custom HTML and PDF pentest reports from DefectDojo. All though DefectDojo has a reporting capability that is built in, the ability to customize your reports is limited when a report that has stringint formating and branding requirements is needed. Reports are created on a per test basis.
 
-This tool utilizes the DefectDojo API for getting platform, engagement, test, and finding details from DefectDojo and then utilizes Jinja2 for templating and HTML generation and the PDFKit for creating the PDF reports.
+This tool utilizes the DefectDojo API for getting platform, engagement, test, and finding details from DefectDojo and then utilizes Jinja2 for templating and HTML generation, and the python PDFKit module for creating the PDF reports.
 
 # Installation and Configuration
 
@@ -37,7 +37,7 @@ To configure ReportNinja, follow the steps below.
 
 ReportNinja utilizes the Jinja2 templating framework in order generate the HTML for a report. Any custom HTML reports created are to be stored in the "templates" directory that is located in the same folder as reportninja.py. When ReportNinja is run, it will list the templates stored in the "templates" directory so that they may be selected by their assigned ID at runtime. This allows a user to maintain multiple templates on the same installation.
 
-ReportNinja provides the raw json provided by the DefectDojo API to be used in the template so that multiple datapoints can be used for custom reports. For details as to what information is available for each variable provided to Jinja2, please reference the DefectDojo API documentation for the coresponding URL that is provided in the table below.
+ReportNinja provides the raw JSON provided by the DefectDojo API to be used in the template so that multiple datapoints can be used for custom reports. For details as to what information is available for each variable provided to Jinja2, please reference the DefectDojo API documentation for the coresponding URL that is provided in the table below.
 
 | Jinja2 Variable |    API URL/Path   | Template Example |
 | :-------------: | :---------------: | :--------------- |
@@ -51,8 +51,12 @@ ReportNinja provides the raw json provided by the DefectDojo API to be used in t
 
 Finding images stored in DefectDojo can be integrated into reports without having to manage files by using the ```src="data:image/png;base64,"``` attribute in your HTML "img" tag and using a Jinja2 reference in the template to the base64 encoded image(s) in the finding output. It should be noted that becuase the images are hard coded into the generated HTML document, the image can sometimes be broken up between two pages by PDFkit when generating the PDF. Some adjustments may need to be made in the template design to account for this.
 
-If you would like to utilize javascript for any part of your template. The javascript must be coded into the HTML file itself so that the output of the code is maintained if the HTML file is converted to a PDF.
+If javascript is going to be utilized in any part of the template, the javascript must be coded into the HTML file itself so that the output of the code is maintained if the HTML file is converted to a PDF.
 
 # Template Configuration Files
 
-There are times when data that does not come out of DefectDojo needs to go into a report. For this situation, the use of a Template Configuration File can add this data to your generated report. The template for a Template Configuration File is listed in this repo. There are three HTML elements that are supported by the Template Configuration File and directions for PDFkit can be passed to ReportNinja.
+There are times when data that does not come out of DefectDojo needs to go into a report. For this situation, the use of a Template Configuration File can add this data to your generated report. The template for a Template Configuration File is listed in this repo. There are three HTML elements that are supported by the Template Configuration File, which are link (a), paragraph (p), and table data (td). Additional configurations for PDFkit can also be passed to ReportNinja through the Template Configuration File.
+
+# DefectDojo JIRA Integration
+
+ReportNinja utilizes DefectDojo's JIRA integration in order to be able to provide the JIRA ID for a finding that has been opened if desired. ReportNinja loads the JIRA findings for the report as a dictionary at run time that ligns up with the order in which DefectDojo provides the findings to ReportNinja. DefectDojo lists findings in order of criticality, from Critical down to Low, so it is recommended that findings be listed in this manor in the report if using the JIRA integration.
