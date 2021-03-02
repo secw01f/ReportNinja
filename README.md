@@ -16,6 +16,8 @@ This tool utilizes the DefectDojo API for getting platform, engagement, test, an
 
 To install ReportNinja, follow the steps below in your command line:
 
+  **Note** If you are running ReportNinja in Kali Linux, Debian, or on Ubuntu systems, you may need to install the [wkhtmltopdf](https://wkhtmltopdf.org/downloads.html) binary if extended use of the pdfkit features like headers, footers, and TOC is required. This is not required for standard use of ReportNinja.
+
   1. git clone https://github.com/secw01f/ReportNinja.git
   2. cd ReportNinja
   3. pip3 install requirements.txt
