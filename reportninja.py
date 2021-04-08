@@ -176,7 +176,9 @@ def main():
     print('[ STATUS ] Creating report(s). This may take some time...')
 
     if PDF == True:
-
+        
+        options = options = {'quiet': ''}
+        
         with open((OutputFile + '.html'), 'w') as file:
             file.write(output)
             file.close()
@@ -191,7 +193,7 @@ def main():
             if contents['pdf']:
                 options = contents['pdf']
             else:
-                options = {'quiet': ''}
+                pass
         else:
             pass
 
