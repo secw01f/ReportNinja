@@ -169,9 +169,9 @@ def main():
     template = env.get_template(ReportTemplate)
 
     if JIRA == True:
-        output = template.render(engagement= engagement.by_id(DojoURL, TestID), product=Product, product_type=ProductType, test=test.by_id(DojoURL,TestID), findings=Findings, endpoints=Endpoints, jira=JiraTickets)
+        output = template.render(engagement= engagement.by_id(DojoURL, Engagement), product=Product, product_type=ProductType, test=test.by_id(DojoURL,TestID), findings=Findings, endpoints=Endpoints, jira=JiraTickets)
     else:
-        output = template.render(engagement= engagement.by_id(DojoURL, TestID), product=Product, product_type=ProductType, test=test.by_id(DojoURL,TestID), findings=Findings, endpoints=Endpoints)
+        output = template.render(engagement= engagement.by_id(DojoURL, Engagement), product=Product, product_type=ProductType, test=test.by_id(DojoURL,TestID), findings=Findings, endpoints=Endpoints)
 
     print('[ STATUS ] Creating report(s). This may take some time...')
 
