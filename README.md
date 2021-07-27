@@ -20,7 +20,7 @@ To install ReportNinja, follow the steps below in your command line:
 
   1. git clone https://github.com/secw01f/ReportNinja.git
   2. cd ReportNinja
-  3. pip3 install requirements.txt
+  3. pip3 install -r requirements.txt
   4. python3 reportninja.py -h
 
   **Note** ReportNinja does not currently work when run from a symbolic link. This is due to the requirement of the config.json file to be present.
