@@ -1,0 +1,107 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>ReportNinja - Home</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">ReportNinja</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/profile">Profile</a>
+          </li>
+          {% if admin == 'admin' %}
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="mx-auto border rounded" style="width:700px; position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
+        <div class="row mt-2 ml-3">
+          <p>Report Generator:</p>
+        </div>
+        <div class="row justify-content-center">
+          <form action="/generate" method="post" enctype="multipart/form-data">
+            <div class="row my-3">
+              <div class="col mr-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Test ID:</span>
+                  </div>
+                  <input type="text" class="form-control" id="testid" name="testid" value="">
+                </div>
+              </div>
+              <div class="col ml-3">
+                <div class="input-group">
+                  <div class="form-check form-check-inline">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text mr-2">Jira:</span>
+                    </div>
+                    <input type="checkbox" id="jira" name="jira">
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text mr-2">PDF:</span>
+                    </div>
+                    <input type="checkbox" id="pdf" name="pdf">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">File Name:</span>
+                </div>
+                <input type="text" class="form-control" id="filename" name="filename">
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="template">Template:</label>
+                </div>
+                <select class="custom-select" id="template" name="template">
+                  {% for template in templates %}
+                  <option value="{{ template }}">{{ template }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Template Config:</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="template_config" name="template_config">
+                  <label class="custom-file-label" for="template_config">Choose Template Config</label>
+                </div>
+              </div>
+            </div>
+            <div class="row my-3">
+              <button type="submit" class="btn btn-lg btn-block">Generate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

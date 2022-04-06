@@ -1,0 +1,140 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>ReportNinja - Admin</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">ReportNinja</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="mt-5 mx-auto border rounded" style="width:650px;">
+          <div class="row mt-2 ml-3">
+            <p>Template Management:</p>
+          </div>
+          <div class="row my-3 ml-4">
+            <form action="/admin/template/upload" method="post" enctype="multipart/form-data">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Template Upload:</span>
+                </div>
+                <div class="custom-file mr-3">
+                  <input type="file" class="custom-file-input" id="template" name="template">
+                  <label class="custom-file-label" for="template">Choose Report Template</label>
+                </div>
+                <button type="submit" class="btn btn-md ml-3">Upload</button>
+              </div>
+            </form>
+          </div>
+          <div class="row my-3 ml-4">
+            <form action="/admin/template/delete" method="post">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="template">Template Delete:</label>
+                </div>
+                <select class="custom-select mr-3" id="template" name="template">
+                  {% for template in templates %}
+                  <option value="{{ template }}">{{ template }}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-md ml-3">Delete</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="my-5 mx-auto border rounded" style="width:650px;">
+          <div class="row mt-2 ml-3">
+            <p>User Management:</p>
+          </div>
+          <div class="row my-3 ml-4">
+            <form action="/admin/user/create" method="post">
+              <div class="row mb-3 ml-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Username:</span>
+                  </div>
+                  <input type="text" class="form-control" id="username" name="username" value="" style="width:475px;">
+                </div>
+              </div>
+              <div class="row my-3 ml-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Password:</span>
+                  </div>
+                  <input type="password" class="form-control" id="password" name="password" value="" style="width:475px;">
+                </div>
+              </div>
+              <div class="row my-3 ml-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">DefectDojo URL:</span>
+                  </div>
+                  <input type="text" class="form-control" id="url" name="url" value="" style="width:450px;">
+                </div>
+              </div>
+              <div class="row my-3 ml-0">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">DefectDojo API Key:</span>
+                  </div>
+                  <input type="text" class="form-control" id="api_key" name="api_key" value="" style="width:400px;">
+                </div>
+              </div>
+              <div class="row my-3 ml-0">
+                <div class="input-group">
+                  <div class="form-check form-check-inline">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text mr-2">Admin:</span>
+                    </div>
+                    <input type="checkbox" id="admin" name="admin">
+                  </div>
+                </div>
+              </div>
+              <div class="row my-3 ml-0">
+                <button type="submit" class="btn btn-lg btn-block">Create User</button>
+              </div>
+            </form>
+          </div>
+          <div class="row mt-5 mb-4 ml-4">
+            <form action="/admin/user/delete" method="post">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="user">User Delete:</label>
+                </div>
+                <select class="custom-select mr-3" id="user" name="user">
+                  {% for user in users %}
+                  <option value="{{ user.username }}">{{ user.username }}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-md ml-3">Delete</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
