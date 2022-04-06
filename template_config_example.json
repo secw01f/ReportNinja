@@ -13,11 +13,26 @@
     },
     {
       "id": "<<html_element_id>>",
+      "type": "table",
+      "rows": [
+        {
+          "td": [
+            {
+              "text": "some table data",
+              "css": "font-size: 10pt; width: 50px; text-align: center;"
+            },
+            {
+              "text": "some more table data",
+              "css": "font-size: 10pt; width: 600px;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "<<html_element_id>>",
       "type": "td",
       "text": "Some Text"
     }
-  ],
-  "pdf": {
-    "quiet": ""
-  }
+  ]
 }
