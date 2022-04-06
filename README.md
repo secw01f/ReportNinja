@@ -57,7 +57,7 @@ If javascript is going to be utilized in any part of the template, the javascrip
 
 # Template Configuration Files
 
-There are times when data that does not come out of DefectDojo needs to go into a report. For this situation, the use of a Template Configuration File can add this data to your generated report. The template for a Template Configuration File is listed in this repo. There are three HTML elements that are supported by the Template Configuration File, which are link (a), paragraph (p), and table data (td). Additional configurations for PDFkit can also be passed to ReportNinja through the Template Configuration File.
+There are times when data that does not come out of DefectDojo needs to go into a report. For this situation, the use of a Template Configuration File can add this data to your generated report. The template for a Template Configuration File is listed in this repo. There are four HTML elements that are supported by the Template Configuration File, which are link (a), paragraph (p), table data (td), and adding rows with data to a table (table). Additional configurations for PDFkit can also be passed to ReportNinja through the Template Configuration File.
 
 # DefectDojo JIRA Integration
 
