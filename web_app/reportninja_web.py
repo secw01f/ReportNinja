@@ -30,7 +30,9 @@ PDF = False
 Config = ''
 ID = ''
 
-if sys.argv[1] == 'no-prompt':
+if not sys.argv[1:]:
+    answer = input('[ ? ] Does an Admin need created?: ')
+elif sys.argv[1] == 'no-prompt':
     answer = 'n'
 else:
     answer = input('[ ? ] Does an Admin need created?: ')
