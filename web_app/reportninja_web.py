@@ -13,6 +13,7 @@ import zipfile
 import string
 import random
 import shutil
+import sys
 from jinja2 import Environment, FileSystemLoader
 from lib import test, findings, product, engagement, endpoints, jira
 from lib import template as temp_config
@@ -29,7 +30,10 @@ PDF = False
 Config = ''
 ID = ''
 
-answer = input('[ ? ] Does an Admin need created?: ')
+if sys.argv[1] == 'no-prompt':
+    answer = 'n'
+else:
+    answer = input('[ ? ] Does an Admin need created?: ')
 
 if answer in ['yes', 'Yes', 'Y', 'y']:
     print('[ + ] Info for creating dmin user\n')
