@@ -1,3 +1,8 @@
 requests
 pdfkit
+jinja2
 bs4
+flask
+Flask-SQLAlchemy
+werkzeug
+flask-login
