@@ -169,7 +169,7 @@ def generate():
     OutputFile = request.form['filename']
     Template = request.form['template']
     if request.files['template_config'].filename == '':
-        pass
+        Config = ''
     else:
         f = request.files['template_config']
         f.save(f'reports/{ID}/{secure_filename(f.filename)}')
