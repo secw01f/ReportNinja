@@ -163,11 +163,11 @@ def generate():
     if 'jira' in request.form:
         JIRA = True
     else:
-        pass
+        JIRA = False
     if 'pdf' in request.form:
         PDF = True
     else:
-        pass
+        PDF = False
     OutputFile = request.form['filename']
     Template = request.form['template']
     if request.files['template_config'].filename == '':
