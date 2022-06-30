@@ -38,7 +38,7 @@ else:
     answer = input('[ ? ] Does an Admin need created?: ')
 
 if answer in ['yes', 'Yes', 'Y', 'y']:
-    print('[ + ] Info for creating dmin user\n')
+    print('[ + ] Info for creating admin user\n')
 
     user_name = input('Username: ')
     password = getpass.getpass(prompt='Password: ', stream=None)
