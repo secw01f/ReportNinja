@@ -73,6 +73,8 @@ class User(UserMixin, db.Model):
     admin = db.Column(db.Boolean, default=False, nullable=False)
     api_key = db.Column(db.String(100), nullable=False)
 
+app.app_context().push()
+    
 with app.app_context():
     db.create_all()
 
